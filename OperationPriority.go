@@ -108,7 +108,7 @@ func OperatorPrecedenceParse(expression string) int { //3 * (3 - 1) ^ 5 + 6 * 12
 			} else {
 
 				q = Oper.Pop()
-				for ; q != "" && (OperationPrecedence(q) > OperationPrecedence(el)); q = Oper.Pop() {
+				for ; q != "" && ((OperationPrecedence(q) >= OperationPrecedence(el)) && !(q == "^" && el == "^")); q = Oper.Pop() {
 					new, _ = Operation(Res.Pop(), Res.Pop(), q)
 					Res.Add(strconv.Itoa(new))
 				}
